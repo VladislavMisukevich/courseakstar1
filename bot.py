@@ -10,18 +10,8 @@ TOKEN = "7357522794:AAHqsKsbtForBWBF9bzve6FUx-AXggD5dDc"
 print(f"TOKEN is: {TOKEN}")
 bot = telebot.TeleBot(TOKEN)
 
+os.makedirs("videos", exist_ok=True)
 
-def download_video_if_needed(name, url):
-    path = f"videos/{name}"
-    if not os.path.exists(path):
-        print(f"Скачиваю: {name}")
-        response = requests.get(url)
-        with open(path, "wb") as f:
-            f.write(response.content)
-    else:
-        print(f"Файл уже есть: {name}")
-
-# 📚 Список уроков (видео и табы)
 lessons = [
     ("урок01-знакомство.mp4", "https://drive.google.com/uc?export=download&id=1Iyl7ujjeEn-V93svPkz1mmlQwD-GYU5K"),
     ("урок02-подготовка.mp4", "https://drive.google.com/uc?export=download&id=1u4pHTFO7Q25GaW1kXgUuLSsxJubSsNZ4"),
@@ -40,6 +30,19 @@ lessons = [
     ("урок14-Итоги обучения.mp4", "https://drive.google.com/uc?export=download&id=1zbrJEVysFwaEcYe844zzhgWHuanEaJDx"),
     ("урок15-Развитие.mp4", "https://drive.google.com/uc?export=download&id=1zbrJEVysFwaEcYe844zzhgWHuanEaJDx"),
 ]
+
+def download_video_if_needed(name, url):
+    path = f"videos/{name}"
+    if not os.path.exists(path):
+        print(f"Скачиваю: {name}")
+        response = requests.get(url)
+        with open(path, "wb") as f:
+            f.write(response.content)
+    else:
+        print(f"Файл уже есть: {name}")
+
+# 📚 Список уроков (видео и табы)
+
 
 # 💾 Храним, какой урок был у пользователя
 user_progress = {}
