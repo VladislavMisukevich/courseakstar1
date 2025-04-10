@@ -57,7 +57,7 @@ def start(message):
     keyboard.add(button)
     bot.send_message(message.chat.id, "Привет! Нажми кнопку, чтобы начать обучение:", reply_markup=keyboard)
 
-for name, url in lessons.items():
+for name, url in lessons:
     download_video_if_needed(name, url)
 
 # 📌 Обработка кнопки "Учиться"
